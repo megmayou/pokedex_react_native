@@ -8,9 +8,34 @@ type API = {
     next: string | null;
     results: { name: string; url: string }[];
   };
+  "/pokemon/[id]": {
+    id: number;
+    name: string;
+    url: string;
+    weight: number;
+    height: number;
+    moves: { ùove: { name: string } }[];
+    stats: {
+      base_stat: number;
+      stat: {
+        name: string;
+      };
+    }[];
+    cries: {
+      latest: string;
+    };
+    types: {
+      type: {
+        name: string;
+      };
+    }[];
+  };
 };
 
-export default function useFetchQuery<T extends keyof API>(path: T) {
+export default function useFetchQuery<T extends keyof API>(
+  path: T,
+  params?: Record<string, string | number>
+) {
   return useQuery({
     queryKey: [path],
     queryFn: async () => {

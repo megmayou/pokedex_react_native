@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import PokemonCard from "@/components/pokemon/PokemonCard";
+import RootView from "@/components/RootView";
 import Row from "@/components/Row";
 import SearchBar from "@/components/SearchBar";
 import SortButton from "@/components/SortButton";
@@ -38,7 +39,7 @@ export default function Index() {
       : pokemons),
   ].sort((a, b) => (a[sortKey] < b[sortKey] ? -1 : 1));
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.tint }]}>
+    <RootView>
       <Row style={styles.header} gap={16}>
         <Image
           source={require("@/assets/images/pokeball.png")}
@@ -49,7 +50,7 @@ export default function Index() {
           Pokédex
         </ThemedText>
       </Row>
-      <Row gap={16}>
+      <Row gap={16} style={styles.form}>
         <SearchBar value={search} onChange={setSearch} />
         <SortButton value={sortKey} onChange={setSortKey} />
       </Row>
@@ -74,7 +75,7 @@ export default function Index() {
           keyExtractor={(item) => item.id.toString()}
         />
       </Card>
-    </SafeAreaView>
+    </RootView>
   );
 }
 
@@ -84,4 +85,5 @@ const styles = StyleSheet.create({
   body: { flex: 1, marginTop: 16 },
   gridGap: { gap: 8 },
   list: { padding: 12 },
+  form: { paddingHorizontal: 12 },
 });
