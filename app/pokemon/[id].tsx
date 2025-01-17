@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import PokemonSpec from "@/components/pokemon/PokemonSpec";
+import PokemonStat from "@/components/pokemon/PokemonStat";
 import PokemonType from "@/components/pokemon/PokemonType";
 import RootView from "@/components/RootView";
 import Row from "@/components/Row";
@@ -28,7 +29,7 @@ export default function Pokemon() {
   const types = pokemon?.types ?? [];
   const bio = species?.flavor_text_entries
     ?.find(({ language }) => language.name === "en")
-    ?.flavor_text.replaceAll("\n", ". ");
+    ?.flavor_text.replaceAll("\n", " ");
   return (
     <RootView style={{ backgroundColor: colorType }}>
       <View>
@@ -109,10 +110,18 @@ export default function Pokemon() {
               />
             </Row>
             <ThemedText>{bio}</ThemedText>
-            {/* Base  Stats */}
+            {/* Stats */}
             <ThemedText variant="subtitle1" style={{ color: colorType }}>
               Base stats
             </ThemedText>
+            <View>
+              <PokemonStat name={"HP"} value={45} color={colorType} />
+              <PokemonStat name={"ATK"} value={49} color={colorType} />
+              <PokemonStat name={"DEF"} value={49} color={colorType} />
+              <PokemonStat name={"HP"} value={65} color={colorType} />
+              <PokemonStat name={"HP"} value={65} color={colorType} />
+              <PokemonStat name={"SPD"} value={45} color={colorType} />
+            </View>
           </Card>
         </View>
       </View>
